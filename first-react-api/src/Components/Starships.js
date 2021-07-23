@@ -3,7 +3,7 @@ import React from "react";
 export default function Starships() {
   return (
     <div>
-      <p>Starships</p>
+      <h1>Starships</h1>
     </div>
   );
 }

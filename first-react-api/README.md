@@ -12,4 +12,12 @@
 
 Notes : some issues here. Tried a normal fetch with async await functions but kept running into errors and didnt manage to troubleshoot
 it. Decided to try it with Axios, which worked from the get go. Only issue was a dumb mistake that cost me a lot of time : dont import
-default exports with {} in React! Import them normally without brackets
+default exports with {} in React! Import them normally without brackets. Also be careful with pagination in these types of APIs. Try to limit your calls while testing to not get throttled too quickly (like I got).
+
+5. Create the necessary components. At first this should be Datafetching, People, Starships, Home. [x]
+
+6. Add a Navbar via Semantics-ui framework [x]
+
+7. Add routing via BrowserRouter module in react-router-dom dependency. [x]
+
+8. Display the data we want, finally try cards? IN PROGRESS.
