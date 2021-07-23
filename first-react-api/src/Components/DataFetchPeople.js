@@ -1,13 +1,16 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Grid } from "semantic-ui-react";
+import Person from "./Person";
 
 export default function DataFetchPeople() {
   const [people, setPeople] = useState([]); //state variable,initialize posts to empty array.
+  //make sure to only update one state at a time
 
   //useEffect hook for fetch
 
   useEffect(() => {
+    console.log("Starting the person fetch");
     const getData = (url) => {
       axios
         .get(url)
@@ -19,7 +22,7 @@ export default function DataFetchPeople() {
           });
           //!TODO TURN ON PAGINATION ON BUILD
           if (res.data.next) {
-            console.log("Getting next page!");
+            console.log("Getting next person page!");
             getData(res.data.next);
           }
         })
@@ -27,6 +30,8 @@ export default function DataFetchPeople() {
         .catch((err) => {
           console.log(err);
         });
+      console.log("Person fetch done, waiting for result");
+      //REALLY USEFUL CONSOLE.LOGS TO CHECK
     };
     getData("https://swapi.dev/api/people");
   }, []);
@@ -36,23 +41,7 @@ export default function DataFetchPeople() {
       <h1 className="textwhite">People</h1>
       <Grid columns={4}>
         {people.map((person, i) => {
-          return (
-            <Grid.Column key={i}>
-              <Card>
-                <Card.Content>
-                  <Card.Header key={person.name}>{person.name}</Card.Header>
-                  <Card.Description>
-                    <strong>Height</strong>
-                    <p>{person.height} cm</p>
-                    <strong>Mass</strong>
-                    <p>{person.mass} kg</p>
-                    <strong>Eye Color</strong>
-                    <p>{person.eye_color} </p>
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
-          );
+          return <Person person={person} i={i} mijnNaam={"Aaron"} />;
         })}
       </Grid>
     </>
